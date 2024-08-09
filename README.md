@@ -39,33 +39,46 @@ g++ query-bot.cpp -o query-bot -lurlmon
 ```
 
 ## How It Works
-QueryBot Class
-Private Members:
 
-- mt19937 rng: Random number generator for selecting random responses.
-uniform_int_distribution<int> dist: Distribution used for generating random integers.
-map<string, string> learnedResponses: Stores learned queries and their corresponding responses.
-Private Methods:
+### QueryBot Class
 
-- loadLearnedResponses(): Loads responses from a file into memory.
-saveLearnedResponse(const string& query, const string& response): Saves a new query-response pair to the file.
-getLearnedResponse(const string& query): Retrieves a previously learned response.
-downloadWebPage(const string& url, const string& filename): Downloads a web page and saves it locally.
-parseHTML(const string& filename): Extracts meaningful content from an HTML file.
-cleanHTML(const string& html): Cleans and processes HTML content to plain text.
-getRandomResponse(const vector<string>& responses): Returns a random response from a list.
-getResponse(const string& input): Determines the appropriate response based on user input.
-handleGeneralQuery(const string& query): Handles queries starting with "what is" by downloading and parsing web pages.
-handleCodingQuery(const string& query): Handles queries related to coding languages and provides relevant information.
-Public Methods:
+The QueryBot class is the main part of the program. It manages everything the bot does, including responding to users, learning new information, and retrieving data from the web.
 
-- QueryBot(): Constructor that initializes the random number generator and loads learned responses.
-start(): Starts the bot and handles the user interaction loop.
-Main Function
-Instantiates the QueryBot object and starts the interaction loop.
-File Structure
-query-bot.cpp: The main source code file containing the QueryBot class and program logic.
-learned_responses.txt: A file where QueryBot stores learned query-response pairs.
+#### Private Members (Behind-the-Scenes Helpers)
+
+- **Random Number Generator (`mt19937 rng`)**: This tool helps the bot pick random responses, making the conversation feel more natural.
+- **Integer Distribution (`uniform_int_distribution<int> dist`)**: This helps the random number generator pick a number within a certain range.
+- **Learned Responses (`map<string, string> learnedResponses`)**: This is a storage space where the bot saves answers to questions it has learned before, so it can reuse them later.
+
+#### Private Methods (Behind-the-Scenes Tasks)
+
+- **Loading Responses (`loadLearnedResponses()`)**: The bot reads any saved responses from a file, so it remembers what it has learned in the past.
+- **Saving a Response (`saveLearnedResponse(const string& query, const string& response)`)**: Whenever the bot learns a new response, it saves it to a file so it can remember it next time.
+- **Getting a Saved Response (`getLearnedResponse(const string& query)`)**: If a user asks a question the bot has heard before, it looks up the answer it has already learned and uses it.
+- **Downloading Web Pages (`downloadWebPage(const string& url, const string& filename)`)**: If the bot doesn't know the answer to a question, it can download a web page from the internet to find out.
+- **Parsing HTML (`parseHTML(const string& filename)`)**: After downloading a web page, the bot goes through the page to find and extract the important information.
+- **Cleaning Up HTML (`cleanHTML(const string& html)`)**: This method removes all the unnecessary parts from the web page, like code and tags, leaving just the useful text.
+- **Getting a Random Response (`getRandomResponse(const vector<string>& responses)`)**: When the bot has several possible answers, it picks one at random to keep things interesting.
+- **Generating a Response (`getResponse(const string& input)`)**: This is where the bot figures out what to say based on what the user typed.
+- **Handling General Questions (`handleGeneralQuery(const string& query)`)**: If the user asks a general question starting with "what is," the bot will try to find the answer online and learn it for future use.
+- **Handling Coding Questions (`handleCodingQuery(const string& query)`)**: If the user asks about coding, the bot checks if it's a common programming language and tries to find the answer on the web.
+
+#### Public Methods (What the User Interacts With)
+
+- **QueryBot Constructor (`QueryBot()`)**: This is what gets the bot ready to start. It sets up the random number generator and loads any previously saved responses.
+- **Starting the Bot (`start()`)**: This method kicks off the bot, allowing it to start interacting with the user. It keeps the conversation going until the user says goodbye.
+
+### Main Function
+
+The main function of the program is simple:
+
+1. **Create a QueryBot**: This sets up the bot.
+2. **Start the Bot**: This begins the interaction loop, where the bot listens to and responds to the user.
+
+### File Structure
+
+- **`query-bot.cpp`**: This is the main file containing all the code that makes QueryBot work.
+- **`learned_responses.txt`**: This file stores any questions and answers that QueryBot has learned during past interactions.
 
 # MIT License
 
