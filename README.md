@@ -18,15 +18,6 @@ QueryBot is a simple C++ console application designed to interact with users by 
 - **C++ Compiler**: Ensure you have a C++ compiler installed that supports the C++11 standard or later.
 - **Windows Environment**: The application relies on the Windows-specific `urlmon` library for downloading web pages.
 
-## Setup
-
-1. **Clone the Repository**:
-   
-```bash
-   git clone https://github.com/your-username/query-bot.git
-   cd query-bot
-```
-
 ## Compile the Program:
 Use a C++ compiler to compile the source code. Here's an example using g++:
 ```bash
