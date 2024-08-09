@@ -21,9 +21,11 @@ QueryBot is a simple C++ console application designed to interact with users by 
 ## Setup
 
 1. **Clone the Repository**:
-   ```bash
+   
+```bash
    git clone https://github.com/your-username/query-bot.git
-   cd query-bot ```
+   cd query-bot
+```
 
 ## Compile the Program:
 Use a C++ compiler to compile the source code. Here's an example using g++:
